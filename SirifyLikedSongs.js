@@ -6,7 +6,10 @@ let credEncoded = Data.fromString(cred).toBase64String()
 let auth = 'Basic ' + credEncoded
 
 // Find the refresh token
-let filePath = "/SirifyRefreshToken.txt"
+let fm = FileManager.local()
+let lib = fm.libraryDirectory()
+let file = "SirifyRefreshToken"
+let filePath = fm.joinPath(lib, file)
 var ref_token = FileManager.readString(filePath)
 
 // Get a new access token

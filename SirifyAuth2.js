@@ -24,7 +24,10 @@ let res = await reqToken.loadJSON()
 let token = res['refresh_token']
 
 // Write the refresh token to memory
-let filePath = "/SirifyRefreshToken.txt"
+let fm = FileManager.local()
+let lib = fm.libraryDirectory()
+let file = "SirifyRefreshToken"
+let filePath = fm.joinPath(lib, file)
 FileManager.writeString(filePath, token)
 
 // Load a confirmation page
