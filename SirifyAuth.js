@@ -21,7 +21,14 @@ let auth2 = 'Bearer ' + token
 
 // Params
 let uri = "https://open.scriptable.app/run?scriptName=SirifyAuth2"
-let endpoint = 'https://accounts.spotify.com/authorize?client_id=' + clientID + '&response_type=code&redirect_uri=' + uri
+var endpoint = 'https://accounts.spotify.com/authorize?client_id=' + clientID + '&response_type=code&redirect_uri=' + uri
+let scopes = ["user-library-modify", 
+    "user-library-read", 
+    "playlist-read-private",
+    "playlist-modify-private",
+    "user-read-playback-state",
+    "streaming"]
+endpoint += '&scope=' + encodeURI(scopes.join(" "))
 let method = 'GET'
 let headers = {
   'Accept': 'application/json',

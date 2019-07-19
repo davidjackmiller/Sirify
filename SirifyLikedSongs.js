@@ -10,7 +10,7 @@ let fm = FileManager.local()
 let lib = fm.libraryDirectory()
 let file = "SirifyRefreshToken"
 let filePath = fm.joinPath(lib, file)
-var ref_token = FileManager.readString(filePath)
+var ref_token = fm.readString(filePath)
 
 // Get a new access token
 let tokenURL = 'https://accounts.spotify.com/api/token'
