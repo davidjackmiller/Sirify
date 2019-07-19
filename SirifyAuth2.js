@@ -28,7 +28,7 @@ let fm = FileManager.local()
 let lib = fm.libraryDirectory()
 let file = "SirifyRefreshToken"
 let filePath = fm.joinPath(lib, file)
-FileManager.writeString(filePath, token)
+fm.writeString(filePath, token)
 
 // Load a confirmation page
 // Safari.open("https://www.cnn.com")

@@ -21,7 +21,7 @@ let auth2 = 'Bearer ' + token
 
 // Params
 let uri = "https://open.scriptable.app/run?scriptName=SirifyAuth2"
-var endpoint = 'https://accounts.spotify.com/authorize?client_id=' + clientID + '&response_type=code&redirect_uri=' + uri
+var endpoint = 'https://accounts.spotify.com/authorize?client_id=' + clientID + '&response_type=code&show_dialog=true&redirect_uri=' + uri
 let scopes = ["user-library-modify", 
     "user-library-read", 
     "playlist-read-private",
