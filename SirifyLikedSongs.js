@@ -5,11 +5,13 @@ let cred = clientID + ':' + clientSecret
 let credEncoded = Data.fromString(cred).toBase64String()
 let auth = 'Basic ' + credEncoded
 
-// Get token
+let token = THE_REFRESH_TOKEN
+
+// Get a new access token
 let tokenURL = 'https://accounts.spotify.com/api/token'
 var reqToken = new Request(tokenURL)
 reqToken.method = 'POST'
-reqToken.body = 'grant_type=client_credentials&undefined='
+reqToken.body = 'grant_type=refresh_token&refresh_token=' + token
 reqToken.headers = {
   'Content-Type': 'application/x-www-form-urlencoded',
   'Authorization': auth
@@ -20,19 +22,16 @@ let token = res['access_token']
 let auth2 = 'Bearer ' + token
 
 // Params
-/*
 var q = encodeURI(URLScheme.parameter('query'))
 var t = URLScheme.parameter('type')
 
-let endpoint = 'https://api.spotify.com/v1/search?q=' + q + '&type=' + t
+let endpoint = 'https://api.spotify.com/v1/me/tracks'
 let method = 'GET'
 let headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json',
   'Authorization': auth2
-}*/
-
-let endpoint = 'https://api.spotify.com/v1/me/tracks'
+}
 
 // Make the request
 let req = new Request(endpoint)
@@ -45,4 +44,4 @@ let json = await req.loadJSON()
 console.log(json)
 
 // Open the track on Spotify
-Safari.open(finalURL)
+//Safari.open(finalURL)
