@@ -7,7 +7,7 @@ let auth = 'Basic ' + credEncoded
 
 // Receive the code
 let code = URLScheme.parameter('code')
-let uri = "https://www.cnn.com"
+let uri = "https://open.scriptable.app/run?scriptName=SirifyAuth2"
 
 // Get refresh and access tokens
 let tokenURL = 'https://accounts.spotify.com/api/token'
@@ -19,9 +19,33 @@ reqToken.headers = {
   'Authorization': auth
 }
 
-// Getthe refresh token
+// Get the refresh token
 let res = await reqToken.loadJSON()
 let token = res['refresh_token']
+
+/*
+cant get promises to work
+// Fetch all contacts
+Contact.all(ContactsContainer.all()).then(function(contacts) {
+  
+  // Delete old refresh tokens
+  
+  for (var i=0; i < contacts.length; i++) {
+    if (contacts[i].givenName == "Sirify") {
+      Contact.delete(contacts[i])
+    }
+  }
+  Contact.persistChanges()
+  
+  
+  // Save the refresh token to a contact
+  let contact = new Contact()
+  contact.givenName = "Sirify"
+  contact.note = JSON.stringify(res)
+  Contact.add(contact)
+  Contact.persistChanges()
+})
+*/
 
 // Save the refresh token to a contact
 let contact = new Contact()
@@ -30,30 +54,5 @@ contact.note = token
 Contact.add(contact)
 Contact.persistChanges()
 
-// Go back to sirify
-Safari.open("https://www.cnn.com")
-
-/*
-// Params
-let uri = "scriptable:///run?scriptName=SirifyAuth2"
-let endpoint = 'https://accounts.spotify.com/authorize?client_id=' + clientID + '&response_type=code&redirect_uri=' + uri
-let method = 'GET'
-let headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json',
-  'Authorization': auth2
-}
-
-// Make the request
-let req = new Request(endpoint)
-req.method = method
-req.headers = headers
-
-// Get the redirect URL
-let json = await req.loadJSON()
-
-// console.log(req)
-console.log(req.response.url)
-
-Safari.open(req.response.url)
-*/
+// Load a confirmation page
+Safari.open(...)

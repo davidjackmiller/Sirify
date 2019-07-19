@@ -20,7 +20,7 @@ let token = res['access_token']
 let auth2 = 'Bearer ' + token
 
 // Params
-let uri = "scriptable:///run?scriptName=SirifyAuth2"
+let uri = "https://open.scriptable.app/run?scriptName=SirifyAuth2"
 let endpoint = 'https://accounts.spotify.com/authorize?client_id=' + clientID + '&response_type=code&redirect_uri=' + uri
 let method = 'GET'
 let headers = {
@@ -34,10 +34,6 @@ let req = new Request(endpoint)
 req.method = method
 req.headers = headers
 
-// Get the redirect URL
+// Open the authorization page
 let json = await req.loadJSON()
-
-// console.log(req)
-console.log(req.response.url)
-
 Safari.open(req.response.url)
