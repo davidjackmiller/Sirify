@@ -23,36 +23,9 @@ reqToken.headers = {
 let res = await reqToken.loadJSON()
 let token = res['refresh_token']
 
-/*
-cant get promises to work
-// Fetch all contacts
-Contact.all(ContactsContainer.all()).then(function(contacts) {
-  
-  // Delete old refresh tokens
-  
-  for (var i=0; i < contacts.length; i++) {
-    if (contacts[i].givenName == "Sirify") {
-      Contact.delete(contacts[i])
-    }
-  }
-  Contact.persistChanges()
-  
-  
-  // Save the refresh token to a contact
-  let contact = new Contact()
-  contact.givenName = "Sirify"
-  contact.note = JSON.stringify(res)
-  Contact.add(contact)
-  Contact.persistChanges()
-})
-*/
-
-// Save the refresh token to a contact
-let contact = new Contact()
-contact.givenName = "Sirify"
-contact.note = token
-Contact.add(contact)
-Contact.persistChanges()
+// Write the refresh token to memory
+let filePath = "/SirifyRefreshToken.txt"
+FileManager.writeString(filePath, token)
 
 // Load a confirmation page
-Safari.open(...)
+// Safari.open("https://www.cnn.com")
