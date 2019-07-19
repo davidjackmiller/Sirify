@@ -14,10 +14,7 @@ Contact.all(ContactsContainer.all()).then(function(contacts) {
             break
         }
     }
-    continueExecution()
-})
-
-function continueExecution() {
+   
     // Get a new access token
     let tokenURL = 'https://accounts.spotify.com/api/token'
     var reqToken = new Request(tokenURL)
@@ -32,10 +29,7 @@ function continueExecution() {
     let token = res['access_token']
     let auth2 = 'Bearer ' + token
 
-    // Params
-    var q = encodeURI(URLScheme.parameter('query'))
-    var t = URLScheme.parameter('type')
-
+    // Fetch the user's tracks
     let endpoint = 'https://api.spotify.com/v1/me/tracks'
     let method = 'GET'
     let headers = {
@@ -51,9 +45,8 @@ function continueExecution() {
 
     // Get the track URL
     let json = await req.loadJSON()
-
     console.log(json)
 
     // Open the track on Spotify
     //Safari.open(finalURL)
-}
+})
